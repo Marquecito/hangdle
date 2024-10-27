@@ -1,7 +1,7 @@
 package ph.edu.auf.nuguid.marcbrian.hangmangame.misc
 
-enum class ScreenRoutes(val route: String) {
+enum class ScreenRoute(val id: String) {
     Start("start"),
     Play("play"),
-    QuestLog("questLog"),
+    HighScore("highScore"),
 }

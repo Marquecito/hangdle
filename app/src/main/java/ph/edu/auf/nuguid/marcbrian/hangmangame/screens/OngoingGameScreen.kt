@@ -69,7 +69,7 @@ fun OngoingGameScreen(
                 )
                 Text(
                     text = "Health: ${enemy.health}",
-                    style = MaterialTheme.typography.bodyLarge,
+                    style = MaterialTheme.typography.titleSmall,
                 )
 
                 Spacer(modifier = Modifier.height(80.dp))
@@ -117,7 +117,7 @@ fun OngoingGameScreen(
                 Surface {
                     Text(
                         text = "Your Health: $health",
-                        style = MaterialTheme.typography.bodyLarge,
+                        style = MaterialTheme.typography.titleSmall,
                         modifier = Modifier.padding(8.dp),
                     )
                 }

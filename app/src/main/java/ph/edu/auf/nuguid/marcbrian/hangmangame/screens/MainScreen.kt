@@ -2,6 +2,7 @@ package ph.edu.auf.nuguid.marcbrian.hangmangame.screens
 
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -17,10 +18,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import ph.edu.auf.nuguid.marcbrian.hangmangame.misc.Screen
-import ph.edu.auf.nuguid.marcbrian.hangmangame.misc.ScreenRoutes
-import ph.edu.auf.nuguid.marcbrian.hangmangame.screens.play.OngoingGameState
+import ph.edu.auf.nuguid.marcbrian.hangmangame.gamePreferences
+import ph.edu.auf.nuguid.marcbrian.hangmangame.misc.NavBarItem
+import ph.edu.auf.nuguid.marcbrian.hangmangame.misc.ScreenRoute
+import ph.edu.auf.nuguid.marcbrian.hangmangame.screens.highscore.HighScoreScreen
+import ph.edu.auf.nuguid.marcbrian.hangmangame.screens.highscore.HighScoreViewModel
 import ph.edu.auf.nuguid.marcbrian.hangmangame.screens.play.PlayEventHandler
 import ph.edu.auf.nuguid.marcbrian.hangmangame.screens.play.PlayScreen
 import ph.edu.auf.nuguid.marcbrian.hangmangame.screens.play.PlayViewModel
@@ -28,23 +32,22 @@ import ph.edu.auf.nuguid.marcbrian.hangmangame.screens.play.PlayViewModel
 
 @Composable
 fun MainScreen() {
-    val items = listOf(Screen.Play, Screen.QuestLog)
     val navController = rememberNavController()
 
     Scaffold(
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         bottomBar = {
-            if (navController.currentBackStackEntry?.destination?.route in items.map { it.route }) {
-
-
+            val navBarItems = NavBarItem.entries
+            val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
+            if (currentRoute in navBarItems.map { it.route.id }) {
                 NavigationBar {
-                    items.forEach { screen ->
+                    navBarItems.forEach { screen ->
                         NavigationBarItem(
                             icon = { Icon(screen.icon, contentDescription = null) },
                             label = { Text(screen.title) },
-                            selected = false,
+                            selected = screen.route.id == currentRoute,
                             onClick = {
-                                navController.navigate(screen.route) {
+                                navController.navigate(screen.route.id) {
                                     popUpTo(navController.graph.startDestinationId)
                                     launchSingleTop = true
                                 }
@@ -55,17 +58,18 @@ fun MainScreen() {
             }
         }
     ) { innerPadding ->
-
         NavHost(
             modifier = Modifier.padding(innerPadding),
             navController = navController,
-            startDestination = ScreenRoutes.Start.route
+            startDestination = ScreenRoute.Start.id
         ) {
-            composable(ScreenRoutes.Start.route) {
-                StartScreen(onPlay = { navController.navigate(ScreenRoutes.Play.route) })
+            composable(ScreenRoute.Start.id) {
+                StartScreen(onPlay = { navController.navigate(ScreenRoute.Play.id) })
             }
-            composable(ScreenRoutes.Play.route) {
-                val viewModel = viewModel { PlayViewModel() }
+            composable(ScreenRoute.Play.id) {
+                val viewModel = viewModel {
+                    PlayViewModel(gamePreferences)
+                }
                 with(viewModel) {
                     val gameState by gameState.collectAsStateWithLifecycle()
                     val currentGuess by currentGuess.collectAsStateWithLifecycle()
@@ -77,10 +81,21 @@ fun MainScreen() {
                             onCurrentGuessChange = ::onCurrentGuessChange,
                             onGuessSubmit = ::onGuessSubmit,
                             onPlayAgain = ::resetGame,
-                            onGoToMainMenu = { navController.navigate(ScreenRoutes.Start.route) },
-                        )
+                            onGoToMainMenu = { navController.navigate(ScreenRoute.Start.id) },
+                        ),
                     )
                 }
+            }
+
+            composable(ScreenRoute.HighScore.id) {
+                val viewModel = viewModel {
+                    HighScoreViewModel(gamePreferences)
+                }
+
+                HighScoreScreen(
+                    highScores = viewModel.highScores,
+                    modifier = Modifier.statusBarsPadding(),
+                )
             }
         }
 

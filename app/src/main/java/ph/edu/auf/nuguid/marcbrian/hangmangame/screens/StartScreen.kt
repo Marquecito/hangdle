@@ -20,11 +20,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import ph.edu.auf.nuguid.marcbrian.hangmangame.R
 import ph.edu.auf.nuguid.marcbrian.hangmangame.components.StrongButton
-import ph.edu.auf.nuguid.marcbrian.hangmangame.misc.ScreenRoutes
 import ph.edu.auf.nuguid.marcbrian.hangmangame.ui.theme.HangmanGameTheme
 
 

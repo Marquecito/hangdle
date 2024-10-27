@@ -4,9 +4,15 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import ph.edu.auf.nuguid.marcbrian.hangmangame.misc.GamePreferences
+import ph.edu.auf.nuguid.marcbrian.hangmangame.misc.HighScore
 
-class PlayViewModel : ViewModel() {
+class PlayViewModel(
+    private val gamePreferences: GamePreferences,
+) : ViewModel() {
     private val solveDamage = 100
+
+    private var solvedWords = 0
 
     private val _gameState = MutableStateFlow(getInitialState())
     val gameState = _gameState.asStateFlow()
@@ -15,7 +21,9 @@ class PlayViewModel : ViewModel() {
     val currentGuess = _currentGuess.asStateFlow()
 
     fun resetGame() {
+        solvedWords = 0
         _gameState.value = getInitialState()
+        _currentGuess.value = ""
     }
 
     fun onCurrentGuessChange(guess: String) {
@@ -52,6 +60,7 @@ class PlayViewModel : ViewModel() {
                         enemyHealth = (enemyHealth - solveDamage).coerceAtLeast(0)
                         enemy = enemy.copy(health = enemyHealth)
                         health += 30
+                        solvedWords++
 
                         if (enemyHealth <= 0) {
                             enemy = Enemies.getOrElse(level) { return@update GameWonState }
@@ -64,6 +73,8 @@ class PlayViewModel : ViewModel() {
                     } else {
                         health = (health - enemy.attack).coerceAtLeast(0)
                         if (health <= 0) {
+                            val highScore = HighScore(level = level, solvedWords = solvedWords)
+                            gamePreferences.addHighScore(highScore)
                             return@update GameLostState(wordToGuess)
                         }
                         guesses = guesses + listOf(validatedGuess)
