@@ -1,7 +1,6 @@
 package ph.edu.auf.nuguid.marcbrian.hangmangame.screens.highscore
 
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

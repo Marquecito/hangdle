@@ -27,8 +27,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onPause() {
         super.onPause()
-        mediaPlayer.stop();
-        mediaPlayer.release();
+        mediaPlayer.stop()
+        mediaPlayer.release()
     }
 }
 

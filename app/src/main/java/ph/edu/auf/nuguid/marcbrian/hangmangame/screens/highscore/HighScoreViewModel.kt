@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import ph.edu.auf.nuguid.marcbrian.hangmangame.misc.GamePreferences
 
 class HighScoreViewModel(
-    private val gamePreferences: GamePreferences,
+    gamePreferences: GamePreferences,
 ) : ViewModel() {
     val highScores = gamePreferences.getHighScores().sortedByDescending { it.solvedWords }
 }

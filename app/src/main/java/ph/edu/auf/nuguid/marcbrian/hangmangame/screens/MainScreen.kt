@@ -1,7 +1,6 @@
 package ph.edu.auf.nuguid.marcbrian.hangmangame.screens
 
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme

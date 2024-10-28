@@ -123,9 +123,3 @@ val Enemies = listOf(
         )
     )
 )
-
-fun main() {
-    for (enemy in Enemies) {
-        println("${enemy.name} ${enemy.words.size}")
-    }
-}

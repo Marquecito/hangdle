@@ -21,7 +21,7 @@ fun HealthBar(
     maxHealth: Int,
     modifier: Modifier = Modifier,
 ) {
-    val healthRatio by animateFloatAsState(health.toFloat() / maxHealth.toFloat())
+    val healthRatio by animateFloatAsState(health.toFloat() / maxHealth.toFloat(), label = "")
     val healthBarColor = MaterialTheme.colorScheme.secondary
 
     Surface(modifier = modifier) {

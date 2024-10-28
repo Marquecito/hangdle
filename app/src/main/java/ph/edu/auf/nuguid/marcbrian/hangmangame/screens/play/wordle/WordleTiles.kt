@@ -46,8 +46,8 @@ private fun CorrectPreview() {
     HangmanGameTheme {
         WordleTiles(
             guess = checkGuess(
-                wordToGuess = "QUEEF",
-                guess = "QUEEF",
+                wordToGuess = "QUEUE",
+                guess = "QUEUE",
             ),
             modifier = Modifier.padding(16.dp),
         )

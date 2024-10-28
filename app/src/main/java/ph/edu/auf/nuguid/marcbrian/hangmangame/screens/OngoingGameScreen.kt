@@ -1,8 +1,5 @@
 package ph.edu.auf.nuguid.marcbrian.hangmangame.screens
 
-import android.content.Context
-import android.content.ContextWrapper
-import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
@@ -149,14 +146,6 @@ fun OngoingGameScreen(
     }
 }
 
-private val LetterKeys = (29..54).toList()
-private val Letters = ('A'..'Z').toList()
-
-fun Context.getActivity(): ComponentActivity? = when (this) {
-    is ComponentActivity -> this
-    is ContextWrapper -> baseContext.getActivity()
-    else -> null
-}
 
 @Preview
 @Composable
