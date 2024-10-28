@@ -28,8 +28,11 @@ class PlayViewModel(
 
     fun onCurrentGuessChange(guess: String) {
         val gameState = _gameState.value
-        if (gameState is OngoingGameState && guess.length <= gameState.wordToGuess.length) {
-            _currentGuess.value = guess
+        if (gameState is OngoingGameState &&
+            guess.length <= gameState.wordToGuess.length &&
+            guess.all { it.isLetter() }
+        ) {
+            _currentGuess.value = guess.uppercase()
         }
     }
 
@@ -48,7 +51,7 @@ class PlayViewModel(
                         currentGuess,
                     )
 
-                    var enemyHealth = enemy.health
+                    var enemyHealth = enemyHealth
                     var health = health
                     var wordToGuess = wordToGuess
                     var guesses = guesses
@@ -58,12 +61,12 @@ class PlayViewModel(
 
                     if (validatedGuess.complete) {
                         enemyHealth = (enemyHealth - solveDamage).coerceAtLeast(0)
-                        enemy = enemy.copy(health = enemyHealth)
                         health += 30
                         solvedWords++
 
                         if (enemyHealth <= 0) {
                             enemy = Enemies.getOrElse(level) { return@update GameWonState }
+                            enemyHealth = enemy.maxHealth
                             level++
                             health += 120
                         }
@@ -82,8 +85,9 @@ class PlayViewModel(
 
                     OngoingGameState(
                         level = level,
-                        enemy = enemy,
                         health = health,
+                        enemy = enemy,
+                        enemyHealth = enemyHealth,
                         wordsGuessed = wordsGuessed,
                         wordToGuess = wordToGuess,
                         guesses = guesses,
@@ -103,6 +107,7 @@ private fun getInitialState(): GameState {
         level = 1,
         health = 150,
         enemy = enemy,
+        enemyHealth = enemy.maxHealth,
         wordsGuessed = emptyList(),
         wordToGuess = wordToGuess,
         guesses = emptyList(),

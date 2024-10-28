@@ -41,8 +41,9 @@ private fun Preview() {
 
     val gameState = OngoingGameState(
         level = 1,
-        enemy = enemy,
         health = 100,
+        enemy = enemy,
+        enemyHealth = enemy.maxHealth,
         wordsGuessed = emptyList(),
         wordToGuess = wordToGuess,
         guesses = emptyList(),

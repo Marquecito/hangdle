@@ -8,8 +8,9 @@ data class GameLostState(val wordToGuess: String) : GameState
 
 data class OngoingGameState(
     val level: Int,
-    val enemy: Enemy,
     val health: Int,
+    val enemy: Enemy,
+    val enemyHealth: Int,
     val wordsGuessed: List<String>,
     val wordToGuess: String,
     val guesses: List<Guess>,
@@ -18,7 +19,7 @@ data class OngoingGameState(
 data class Enemy(
     val name: String,
     val attack: Int,
-    val health: Int,
+    val maxHealth: Int,
     val words: List<String>,
 )
 

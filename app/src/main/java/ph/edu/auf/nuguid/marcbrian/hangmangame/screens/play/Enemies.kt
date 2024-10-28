@@ -4,7 +4,7 @@ val Enemies = listOf(
     Enemy(
         name = "Goblin",
         attack = 20,
-        health = 20,
+        maxHealth = 20,
         words = listOf(
             "Sneaky", "Greedy", "Nasty", "Ambush", "Feral", 
             "Filthy", "Cunning", "Shifty", "Crafty", "Pillage",
@@ -16,7 +16,7 @@ val Enemies = listOf(
     Enemy(
         name = "Gobbler",
         attack = 40,
-        health = 40,
+        maxHealth = 40,
         words = listOf(
             "Hungry", "Glutton", "Devour", "Beastly", "Rabble",
             "Feast", "Guzzle", "Gobble", "Nibble",
@@ -28,7 +28,7 @@ val Enemies = listOf(
     Enemy(
         name = "Orc",
         attack = 40,
-        health = 80,
+        maxHealth = 80,
         words = listOf(
             "Savage", "Brutal", "Raider", "Berserk", "Grunt", 
             "Warrior", "Feral", "Mighty", "Crude",
@@ -40,7 +40,7 @@ val Enemies = listOf(
     Enemy(
         name = "Troll",
         attack = 40,
-        health = 160,
+        maxHealth = 160,
         words = listOf(
             "Giant", "Hulking", "Clubber", "Stoner", 
             "Bridge", "Bully", "Brawn", "Boggle", "Brawl", "Smash",
@@ -52,7 +52,7 @@ val Enemies = listOf(
     Enemy(
         name = "Necromancer",
         attack = 50,
-        health = 320,
+        maxHealth = 320,
         words = listOf(
             "Darken", "Raise", "Curse", "Sorcery", "Wraith",
             "Unholy", "Gloomy", "Fright", "Casket", "Spooky", "Phantom",
@@ -64,7 +64,7 @@ val Enemies = listOf(
     Enemy(
         name = "Dragon",
         attack = 100,
-        health = 500,
+        maxHealth = 500,
         words = listOf(
             "Scales", "Flame", "Winged", "Terror", "Inferno", "Clawed",
             "Fierce", "Mythic", "Titanic",
@@ -77,7 +77,7 @@ val Enemies = listOf(
     Enemy(
         name = "Dark Elf",
         attack = 125,
-        health = 550,
+        maxHealth = 550,
         words = listOf(
             "Shadow", "Swift", "Agile", "Mystic", "Poison", "Blade",
             "Elven", "Silent", "Cunning", "Rogue", "Whisper",
@@ -89,7 +89,7 @@ val Enemies = listOf(
     Enemy(
         name = "Lich King",
         attack = 150,
-        health = 600,
+        maxHealth = 600,
         words = listOf(
             "Frozen", "Grave", "Undead", "Crown", "Ruler", "Frost",
             "Dread", "Cursed", "Phantom", "Shade", "Gloom",
@@ -101,7 +101,7 @@ val Enemies = listOf(
     Enemy(
         name = "Demon Lord",
         attack = 200,
-        health = 700,
+        maxHealth = 700,
         words = listOf(
             "Inferno", "Fiery", "Hellish", "Wrath", "Horned", "Abyss",
             "Chaos", "Satanic", "Wicked",
@@ -113,7 +113,7 @@ val Enemies = listOf(
     Enemy(
         name = "The Herb",  // Final boss
         attack = 250,
-        health = 1000,
+        maxHealth = 1000,
         words = listOf(
             "Toxic", "Venom", "Spines", "Poison", "Thorny",
             "Deadly", "Blight", "Fungal", "Decay", "Stench", "Noxious",

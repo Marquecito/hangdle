@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -40,7 +41,9 @@ fun MainScreen() {
             val navBarItems = NavBarItem.entries
             val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
             if (currentRoute in navBarItems.map { it.route.id }) {
-                NavigationBar {
+                NavigationBar(
+                    containerColor = Color.Transparent,
+                ) {
                     navBarItems.forEach { screen ->
                         NavigationBarItem(
                             icon = { Icon(screen.icon, contentDescription = null) },
@@ -58,8 +61,8 @@ fun MainScreen() {
             }
         }
     ) { innerPadding ->
+        println("Ignored: $innerPadding")
         NavHost(
-            modifier = Modifier.padding(innerPadding),
             navController = navController,
             startDestination = ScreenRoute.Start.id
         ) {

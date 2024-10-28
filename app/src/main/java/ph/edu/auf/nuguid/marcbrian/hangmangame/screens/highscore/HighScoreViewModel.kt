@@ -6,5 +6,5 @@ import ph.edu.auf.nuguid.marcbrian.hangmangame.misc.GamePreferences
 class HighScoreViewModel(
     private val gamePreferences: GamePreferences,
 ) : ViewModel() {
-    val highScores = gamePreferences.getHighScores().sortedBy { it.solvedWords }
+    val highScores = gamePreferences.getHighScores().sortedByDescending { it.solvedWords }
 }
