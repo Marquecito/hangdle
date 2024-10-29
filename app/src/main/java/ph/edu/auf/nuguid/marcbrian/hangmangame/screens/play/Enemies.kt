@@ -69,9 +69,7 @@ val Enemies = listOf(
             "Scales", "Flame", "Winged", "Terror", "Inferno", "Clawed",
             "Fierce", "Mythic", "Titanic",
             "Roaring", "Fang", "Ancient", "Hoard", "Serpent", "Flying",
-            "Beastly", "Scaled", "Wyrm", "Havoc", 
-            
-            "Scorching"
+            "Beastly", "Scaled", "Wyrm", "Havoc",
         )
     ),
     Enemy(

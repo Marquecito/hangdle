@@ -96,7 +96,6 @@ fun MainScreen() {
 
                 HighScoreScreen(
                     highScores = viewModel.highScores,
-                    modifier = Modifier.statusBarsPadding(),
                 )
             }
         }

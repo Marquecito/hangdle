@@ -26,19 +26,19 @@ fun WordleTiles(
     }
 }
 
-@Preview
-@Composable
-private fun Preview() {
-    HangmanGameTheme {
-        WordleTiles(
-            guess = checkGuess(
-                wordToGuess = "QUEEF",
-                guess = "QUEUE",
-            ),
-            modifier = Modifier.padding(16.dp),
-        )
-    }
-}
+//@Preview
+//@Composable
+//private fun Preview() {
+//    HangmanGameTheme {
+//        WordleTiles(
+//            guess = checkGuess(
+//                wordToGuess = "QUEUE",
+//                guess = "QUEUE",
+//            ),
+//            modifier = Modifier.padding(16.dp),
+//        )
+//    }
+//}
 
 @Preview
 @Composable
